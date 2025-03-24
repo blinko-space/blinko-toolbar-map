@@ -1,0 +1,23 @@
+{
+	"compilerOptions": {
+		"allowJs": false,
+		"allowSyntheticDefaultImports": true,
+		"esModuleInterop": false,
+		"forceConsistentCasingInFileNames": true,
+		"isolatedModules": true,
+		"jsx": "react-jsx",
+		"jsxImportSource": "preact",
+		"lib": ["DOM", "DOM.Iterable", "ESNext"],
+		"module": "ESNext",
+		"moduleResolution": "Node",
+		"noEmit": true,
+		"resolveJsonModule": true,
+		"skipLibCheck": true,
+		"strict": true,
+		"target": "ESNext",
+		"useDefineForClassFields": true,
+		"types": ["blinko", "node"],
+		"typeRoots": ["./types"]
+	},
+	"include": ["src", "vite.config.ts", "types"]
+}
