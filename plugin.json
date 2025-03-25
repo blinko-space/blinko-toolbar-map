@@ -1,16 +1,16 @@
 {
-  "name": "blinko-plugin-demo",
+  "name": "blinko-toolbar-map",
   "author": "blinko-offical",
-  "url": "https://github.com/blinko-space/blinko-plugin-template",
-  "version": "0.0.4",
-  "minAppVersion": "0.0.0",
+  "url": "https://github.com/blinko-space/blinko-toolbar-map",
+  "version": "0.0.1",
+  "minAppVersion": "0.45.3",
   "displayName": {
-    "default": "Blinko plugin demo",
-    "zh": "Blinko插件示例"
+    "default": "Blinko Toolbar Map",
+    "zh": "Blinko 工具栏地图"
   },
   "description": {
-    "default": "This is a blinko plugin demo, you can use it as a template to create your own plugin.",
-    "zh": "这是一个blinko插件示例，你可以使用它作为模板来创建自己的插件。"
+    "default": "This is a blinko plugin for map, you can use it to insert map location points.",
+    "zh": "这是一个blinko插件，你可以使用它来插入地图定位点"
   },
   "readme": {
     "default": "README.md",

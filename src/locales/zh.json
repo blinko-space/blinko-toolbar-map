@@ -1,5 +1,14 @@
 {
-  "title": "我的插件",
-  "countLabel": "计数为 {{count}}",
-  "successMessage": "成功！"
+  "location": "位置",
+  "map": {
+    "loading": "加载中...",
+    "confirm": "确定",
+    "gettingLocation": "获取中...",
+    "unnamed": "未命名位置",
+    "locationPoint": "位置点({{lat}},{{lng}})",
+    "browserNotSupport": "浏览器不支持地理定位",
+    "cannotGetLocation": "无法获取位置信息",
+    "saveLocation": "保存位置",
+    "clear": "清除"
+  }
 } 
