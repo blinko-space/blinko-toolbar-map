@@ -102,12 +102,17 @@ export function App({ onClick, style }: { onClick?: (locationInfo: PlaceInfo | n
   const getPlaceNameFromCoords = async (lat: number, lng: number): Promise<string> => {
     try {
       setLoadingPlaceName(true);
+      // Get browser language or fall back to 'en' if not available
+      const browserLang = navigator.language || navigator.languages?.[0] || 'en';
+      // Format Accept-Language header with browser language as primary and English as fallback
+      const acceptLanguage = `${browserLang},en-US;q=0.8,en;q=0.5`;
+      
       // Use OpenStreetMap's Nominatim service for reverse geocoding (no token needed)
       const response = await fetch(
         `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&zoom=18&addressdetails=1`,
         {
           headers: {
-            'Accept-Language': 'zh-CN,zh;q=0.9', // Request Chinese results
+            'Accept-Language': acceptLanguage, // Use browser language
             'User-Agent': 'Blinko-Map-App' // Must provide user agent
           }
         }
@@ -120,7 +125,6 @@ export function App({ onClick, style }: { onClick?: (locationInfo: PlaceInfo | n
       const data = await response.json();
 
       // Build place name from response data
-      // Prioritize Chinese names by province, city, district, street hierarchy
       let placeName = '';
 
       if (data.address) {
@@ -133,22 +137,39 @@ export function App({ onClick, style }: { onClick?: (locationInfo: PlaceInfo | n
         const road = addr.road || addr.street;
         const houseNumber = addr.house_number;
 
+        // Get browser language for formatting
+        const userLang = navigator.language || navigator.languages?.[0] || 'en';
+        
         // Combine address parts
         const parts = [];
 
         if (province) parts.push(province);
         if (city && city !== province) parts.push(city);
         if (district && district !== city) parts.push(district);
+        
+        // Format road and house number based on language/locale
         if (road) {
           if (houseNumber) {
-            parts.push(`${road}${houseNumber}号`);
+            // Different regions use different address formats
+            if (userLang.startsWith('zh')) {
+              // Chinese format: Road + Number + 号
+              parts.push(`${road}${houseNumber}号`);
+            } else if (userLang.startsWith('ja') || userLang.startsWith('ko')) {
+              // Japanese/Korean similar to Chinese
+              parts.push(`${road}${houseNumber}`);
+            } else {
+              // Western format: Number + Road
+              parts.push(`${houseNumber} ${road}`);
+            }
           } else {
             parts.push(road);
           }
         }
 
         if (parts.length > 0) {
-          placeName = parts.join(', ');
+          // Join with comma for western languages, space for some Asian languages
+          const separator = userLang.startsWith('zh') || userLang.startsWith('ja') || userLang.startsWith('ko') ? ' ' : ', ';
+          placeName = parts.join(separator);
         } else {
           // If no valid address parts extracted, use display name
           placeName = data.display_name.split(',')[0];

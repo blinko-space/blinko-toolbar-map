@@ -1,74 +1,58 @@
-# Blinko Plugin Template
+# Blinko Map Location Plugin
 
-A template for building Blinko plugins quickly and efficiently.
+A plugin for Blinko that allows users to attach location information to their notes.
+![image](./home.png)
 
-[Blinko Plugin Development Documentation](https://blinko.mintlify.app/plugins/get-started)
 
-## 🚀 Quick Start
+## Features
 
-1. Clone this repository
+- Search and select locations on a map
+- Automatically fetch current user location
+- Reverse geocoding to get readable location names
+- Attach location metadata to notes
+- Display location information in the note footer
+- Click on location to view or update it
+
+## Installation
+
+1. Install dependencies:
 ```bash
-git clone https://github.com/blinko-space/blinko-plugin-template.git
-cd blinko-plugin-template
+npm install
 ```
 
-2. Install dependencies
+2. Start the development server:
 ```bash
-bun install
+npm run dev
 ```
 
-3. Start development server
+## Usage
+
+1. Create or open a note in Blinko
+2. Click the location icon in the toolbar
+3. Select a location on the map or use your current location
+4. Click "Confirm" to attach the location to your note
+5. The location will appear in the note footer
+
+To update or remove a location:
+- Click on the location displayed in the note footer
+- Select a new location or click "Clear" to remove it
+- Click "Confirm" to save your changes
+
+## Technical Details
+
+This plugin uses:
+- OpenLayers for map rendering
+- Gaode Map tiles for map data
+- OpenStreetMap's Nominatim service for reverse geocoding
+- Preact for UI components
+
+## Development
+
+To build the plugin for production:
 ```bash
-bun run dev
+npm run release:publish
 ```
 
-4. Visit `http://localhost:3000` for connection instructions
+## License
 
-## 📖 Official Documentation
-
-> ⭐ **Important: Please visit [Blinko Plugin Development Documentation](https://blinko.mintlify.app/plugins/get-started) for complete development guides and best practices!**
-
-## 🛠️ Development Commands
-
-- `bun run dev` - Start development server
-- `bun run release:publish` - Build and publish plugin
-
-## 📁 Directory Structure
-
-```
-├── src/              # Source code directory
-├── dist/            # Development build output
-├── release/         # Production build output
-├── plugin.json      # Plugin configuration
-└── vite.config.ts   # Vite configuration
-```
-
-## 🔧 Configuration
-
-Configure your plugin in `plugin.json`:
-
-```json
-{
-  "name": "blinko-plugin-demo",
-  "author": "blinko-offical",
-  "url": "https://github.com/blinko-space/blinko-plugin-template",
-  "version": "0.0.4",
-  "minAppVersion": "0.0.0",
-  "displayName": {
-    "default": "Blinko plugin demo",
-    "zh": "Blinko插件示例"
-  },
-  "description": {
-    "default": "This is a blinko plugin demo, you can use it as a template to create your own plugin.",
-    "zh": "这是一个blinko插件示例，你可以使用它作为模板来创建自己的插件。"
-  },
-  "readme": {
-    "default": "README.md",
-    "zh": "README_zh.md"
-  }
-}
-```
-
-## 📝 License
-
-MIT
+[MIT](LICENSE)
